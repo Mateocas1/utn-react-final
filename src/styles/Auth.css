@@ -115,3 +115,26 @@
 .auth-link a:hover {
   text-decoration: underline;
 }
+
+/* === Auth Responsive === */
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 0.75rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .auth-title {
+    font-size: 1.4rem;
+  }
+
+  .auth-btn {
+    padding: 0.85rem;
+  }
+}

@@ -7,6 +7,7 @@
   padding: 0.75rem 1.5rem;
   background-color: #213547;
   color: #ffffff;
+  position: relative;
 }
 
 .navbar-brand a {
@@ -15,6 +16,42 @@
   font-weight: 700;
   text-decoration: none;
 }
+
+/* === Hamburger toggle === */
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.navbar-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.navbar-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* === Links === */
 
 .navbar-links {
   display: flex;
@@ -40,6 +77,10 @@
   padding: 0.25rem 0.5rem;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 180px;
 }
 
 .navbar-logout-btn {
@@ -57,4 +98,52 @@
 
 .navbar-logout-btn:hover {
   background-color: #dc2626;
+}
+
+/* === Navbar Responsive === */
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+    padding-top: 0.75rem;
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .navbar-links a,
+  .navbar-links .navbar-email,
+  .navbar-links .navbar-logout-btn {
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-email {
+    max-width: 100%;
+    background-color: transparent;
+    padding: 0.75rem 0;
+    border-radius: 0;
+  }
+
+  .navbar-logout-btn {
+    margin-top: 0.25rem;
+    border-radius: 6px;
+    text-align: center;
+    padding: 0.65rem;
+  }
 }
