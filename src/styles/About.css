@@ -1,0 +1,101 @@
+/* === About page === */
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.about-title {
+  font-size: 1.75rem;
+  color: #213547;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.about-section {
+  margin-bottom: 2rem;
+}
+
+.about-section h2 {
+  font-size: 1.3rem;
+  color: #213547;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.about-section p {
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.about-section ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-section ul li {
+  color: #4b5563;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.about-section ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #646cff;
+  font-weight: 700;
+}
+
+.about-tech-list li {
+  padding: 0.5rem 0.75rem 0.5rem 1.25rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+}
+
+.about-section code {
+  background-color: #f1f5f9;
+  color: #646cff;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.about-structure {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  padding: 1.25rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* === About Responsive === */
+
+@media (max-width: 600px) {
+  .about-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .about-title {
+    font-size: 1.4rem;
+  }
+
+  .about-section h2 {
+    font-size: 1.15rem;
+  }
+
+  .about-structure {
+    font-size: 0.7rem;
+    padding: 1rem;
+  }
+}

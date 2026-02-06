@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRoute'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
+import About from './pages/About'
 import './App.css'
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="/about" element={<About />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </main>
