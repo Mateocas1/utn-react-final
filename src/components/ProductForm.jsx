@@ -69,6 +69,7 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
         resetForm()
       }
     } catch (err) {
+      console.error('Error al guardar producto:', err)
       setError('Error al guardar el producto. Intentá de nuevo.')
     } finally {
       setLoading(false)
