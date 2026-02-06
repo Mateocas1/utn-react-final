@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import '../styles/Auth.css'
 
@@ -99,7 +100,7 @@ function Login() {
         </form>
 
         <p className="auth-link">
-          ¿No tenés cuenta? <a href="/register">Registrate</a>
+          ¿No tenés cuenta? <Link to="/register">Registrate</Link>
         </p>
       </div>
     </div>
