@@ -6,7 +6,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import About from './pages/About'
 import './App.css'
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom'
 
 function App() {
   const { user } = useAuth()
@@ -19,7 +19,7 @@ function App() {
           <Navbar />
           <main className="main-content">
             {/* Nested routes */}
-            <RouterOutlet />
+            <Outlet />
           </main>
         </div>
       ),
