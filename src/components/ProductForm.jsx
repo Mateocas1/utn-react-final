@@ -8,6 +8,7 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -18,6 +19,7 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
       setDescription(editingProduct.description || '')
       setPrice(editingProduct.price?.toString() || '')
       setCategory(editingProduct.category || '')
+      setImageUrl(editingProduct.imageUrl || '')
     } else {
       resetForm()
     }
@@ -28,6 +30,7 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
     setDescription('')
     setPrice('')
     setCategory('')
+    setImageUrl('')
     setError('')
   }
 
@@ -48,6 +51,10 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
       setError('Seleccioná una categoría')
       return false
     }
+    if (imageUrl.trim() && !/^https?:\/\/.+/i.test(imageUrl.trim())) {
+      setError('La URL de la imagen debe comenzar con http:// o https://')
+      return false
+    }
     return true
   }
 
@@ -64,6 +71,7 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
         description: description.trim(),
         price: Number(price),
         category,
+        imageUrl: imageUrl.trim(),
       })
       if (!editingProduct) {
         resetForm()
@@ -106,6 +114,18 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
             onChange={(e) => setDescription(e.target.value)}
             disabled={loading}
             rows={3}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="imageUrl">Imagen URL (opcional)</label>
+          <input
+            id="imageUrl"
+            type="url"
+            placeholder="https://ejemplo.com/imagen.jpg"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            disabled={loading}
           />
         </div>
 

@@ -246,7 +246,21 @@
   justify-content: flex-end;
 }
 
-/* === Dashboard Responsive === */
+/* === Product Card Image === */
+
+.product-card-image {
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-card-image img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
 
 @media (max-width: 768px) {
   .dashboard-container {

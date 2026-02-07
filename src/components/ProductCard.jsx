@@ -19,6 +19,18 @@ function ProductCard({ product, onEdit, onDelete }) {
 
   return (
     <div className="product-card">
+      {product.imageUrl && (
+        <div className="product-card-image">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            onError={(e) => {
+              e.target.style.display = 'none'
+            }}
+          />
+        </div>
+      )}
+
       <div className="product-card-header">
         <h4 className="product-card-name">{product.name}</h4>
         <span className="product-card-category">{product.category}</span>
