@@ -3,7 +3,7 @@ import { useAuth } from '../hooks/useAuth'
 import ProductForm from '../components/ProductForm'
 import ProductList from '../components/ProductList'
 import {
-  getProducts,
+  subscribeToProducts,
   createProduct,
   updateProduct,
   deleteProduct,
@@ -17,22 +17,26 @@ function Dashboard() {
 
   const { user } = useAuth()
 
-  // Cargar productos al montar el componente
+  // Escuchar productos en tiempo real
   useEffect(() => {
-    loadProducts()
-  }, [user])
+    if (!user) return
 
-  async function loadProducts() {
-    try {
-      setLoadingProducts(true)
-      const data = await getProducts(user.uid)
-      setProducts(data)
-    } catch (error) {
-      console.error('Error al cargar productos:', error)
-    } finally {
-      setLoadingProducts(false)
-    }
-  }
+    setLoadingProducts(true)
+
+    const unsubscribe = subscribeToProducts(
+      user.uid,
+      (updatedProducts) => {
+        setProducts(updatedProducts)
+        setLoadingProducts(false)
+      },
+      (error) => {
+        console.error('Error al cargar productos:', error)
+        setLoadingProducts(false)
+      }
+    )
+
+    return () => unsubscribe()
+  }, [user])
 
   // Crear o actualizar producto
   async function handleSubmit(productData) {
@@ -42,7 +46,6 @@ function Dashboard() {
     } else {
       await createProduct(productData, user.uid)
     }
-    await loadProducts()
   }
 
   // Seleccionar producto para editar
@@ -59,7 +62,6 @@ function Dashboard() {
   async function handleDelete(productId) {
     try {
       await deleteProduct(productId)
-      await loadProducts()
     } catch (error) {
       console.error('Error al eliminar producto:', error)
     }
