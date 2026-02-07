@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-
-const CATEGORIES = ['Electrónica', 'Ropa', 'Alimentos', 'Hogar', 'Deportes', 'Otros']
+import { CATEGORIES } from '../constants/categories'
 
 function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
   const [name, setName] = useState('')
