@@ -17,7 +17,6 @@ function Dashboard() {
 
   const { user } = useAuth()
 
-  // Escuchar productos en tiempo real
   useEffect(() => {
     if (!user) return
 
@@ -38,7 +37,6 @@ function Dashboard() {
     return () => unsubscribe()
   }, [user])
 
-  // Crear o actualizar producto
   async function handleSubmit(productData) {
     if (editingProduct) {
       await updateProduct(editingProduct.id, productData)
@@ -48,17 +46,14 @@ function Dashboard() {
     }
   }
 
-  // Seleccionar producto para editar
   function handleEdit(product) {
     setEditingProduct(product)
   }
 
-  // Cancelar edición
   function handleCancelEdit() {
     setEditingProduct(null)
   }
 
-  // Eliminar producto
   async function handleDelete(productId) {
     try {
       await deleteProduct(productId)

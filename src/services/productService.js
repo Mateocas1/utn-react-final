@@ -14,7 +14,6 @@ import { db } from './firebase'
 
 const COLLECTION_NAME = 'productos'
 
-// Escuchar productos en tiempo real del usuario autenticado
 export function subscribeToProducts(uid, callback, onError) {
   const q = query(
     collection(db, COLLECTION_NAME),
@@ -25,9 +24,9 @@ export function subscribeToProducts(uid, callback, onError) {
   const unsubscribe = onSnapshot(
     q,
     (snapshot) => {
-      const products = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
+      const products = snapshot.docs.map((d) => ({
+        id: d.id,
+        ...d.data(),
       }))
       callback(products)
     },
@@ -40,7 +39,6 @@ export function subscribeToProducts(uid, callback, onError) {
   return unsubscribe
 }
 
-// Crear un nuevo producto
 export async function createProduct(productData, uid) {
   const docRef = await addDoc(collection(db, COLLECTION_NAME), {
     ...productData,
@@ -50,7 +48,6 @@ export async function createProduct(productData, uid) {
   return docRef.id
 }
 
-// Actualizar un producto existente
 export async function updateProduct(productId, productData) {
   const productRef = doc(db, COLLECTION_NAME, productId)
   await updateDoc(productRef, {
@@ -59,7 +56,6 @@ export async function updateProduct(productId, productData) {
   })
 }
 
-// Eliminar un producto
 export async function deleteProduct(productId) {
   const productRef = doc(db, COLLECTION_NAME, productId)
   await deleteDoc(productRef)

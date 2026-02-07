@@ -1,5 +1,4 @@
 import ProductCard from './ProductCard'
-import '../styles/Dashboard.css'
 
 function ProductList({ products, loading, onEdit, onDelete }) {
   if (loading) {

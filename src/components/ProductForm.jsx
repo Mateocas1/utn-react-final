@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import '../styles/Dashboard.css'
 
 const CATEGORIES = ['Electrónica', 'Ropa', 'Alimentos', 'Hogar', 'Deportes', 'Otros']
 
@@ -12,7 +11,6 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // Cargar datos cuando se edita un producto
   useEffect(() => {
     if (editingProduct) {
       setName(editingProduct.name || '')
@@ -121,7 +119,7 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
           <label htmlFor="imageUrl">Imagen URL (opcional)</label>
           <input
             id="imageUrl"
-            type="url"
+            type="text"
             placeholder="https://ejemplo.com/imagen.jpg"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
@@ -136,7 +134,7 @@ function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
               id="price"
               type="number"
               step="0.01"
-              min="0"
+              min="0.01"
               placeholder="0.00"
               value={price}
               onChange={(e) => setPrice(e.target.value)}

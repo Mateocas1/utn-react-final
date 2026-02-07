@@ -42,12 +42,6 @@ function Login() {
       await login(email, password)
     } catch (err) {
       switch (err.code) {
-        case 'auth/user-not-found':
-          setError('No existe un usuario con ese email')
-          break
-        case 'auth/wrong-password':
-          setError('Contraseña incorrecta')
-          break
         case 'auth/invalid-credential':
           setError('Credenciales inválidas. Verificá email y contraseña')
           break

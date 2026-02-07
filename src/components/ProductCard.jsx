@@ -1,32 +1,23 @@
-import '../styles/Dashboard.css'
+import { useState } from 'react'
+import { formatDate } from '../utils/formatters'
 
 function ProductCard({ product, onEdit, onDelete }) {
+  const [imgError, setImgError] = useState(false)
+
   function handleDelete() {
     if (window.confirm(`¿Estás seguro de eliminar "${product.name}"?`)) {
       onDelete(product.id)
     }
   }
 
-  function formatDate(timestamp) {
-    if (!timestamp) return 'Sin fecha'
-    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp)
-    return date.toLocaleDateString('es-AR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    })
-  }
-
   return (
     <div className="product-card">
-      {product.imageUrl && (
+      {product.imageUrl && !imgError && (
         <div className="product-card-image">
           <img
             src={product.imageUrl}
             alt={product.name}
-            onError={(e) => {
-              e.target.style.display = 'none'
-            }}
+            onError={() => setImgError(true)}
           />
         </div>
       )}
@@ -40,7 +31,7 @@ function ProductCard({ product, onEdit, onDelete }) {
 
       <div className="product-card-footer">
         <span className="product-card-price">
-          ${product.price.toFixed(2)}
+          ${(product.price ?? 0).toFixed(2)}
         </span>
         <span className="product-card-date">
           {formatDate(product.createdAt)}

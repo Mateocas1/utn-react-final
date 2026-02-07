@@ -12,22 +12,18 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // Registrar un nuevo usuario
   function register(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
-  // Iniciar sesión
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
-  // Cerrar sesión
   function logout() {
     return signOut(auth)
   }
 
-  // Escuchar cambios en el estado de autenticación
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
