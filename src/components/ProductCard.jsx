@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { formatDate } from '../utils/formatters'
+import '../styles/ProductCard.css'
+import '../styles/shared.css'
 
 function ProductCard({ product, onEdit, onDelete }) {
   const [imgError, setImgError] = useState(false)

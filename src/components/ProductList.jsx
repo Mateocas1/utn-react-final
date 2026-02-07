@@ -1,4 +1,6 @@
 import ProductCard from './ProductCard'
+import '../styles/ProductList.css'
+import '../styles/shared.css'
 
 function ProductList({ products, loading, onEdit, onDelete }) {
   if (loading) {

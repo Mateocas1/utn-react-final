@@ -30,3 +30,6 @@ a {
 a:hover {
   color: #535bf2;
 }
+
+@import './styles/shared.css';
+@import './styles/breakpoints.css';

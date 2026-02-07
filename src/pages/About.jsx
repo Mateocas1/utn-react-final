@@ -19,12 +19,12 @@ function About() {
       <section className="about-section">
         <h2>Tecnologías Utilizadas</h2>
         <ul className="about-tech-list">
-          <li><strong>React JS</strong> — Biblioteca principal para la interfaz de usuario</li>
+          <li><strong>React JS 19</strong> — Biblioteca principal para la interfaz de usuario</li>
           <li><strong>Vite</strong> — Herramienta de build y servidor de desarrollo</li>
-          <li><strong>React Router DOM v6</strong> — Navegación SPA con rutas protegidas</li>
+          <li><strong>React Router DOM v7</strong> — Navegación SPA con rutas protegidas (createBrowserRouter)</li>
           <li><strong>Firebase Authentication</strong> — Registro e inicio de sesión de usuarios</li>
           <li><strong>Firebase Firestore</strong> — Base de datos NoSQL para almacenar productos</li>
-          <li><strong>CSS Nativo</strong> — Estilos modulares con Flexbox, enfoque mobile-first</li>
+          <li><strong>CSS Nativo Modular</strong> — Estilos por componente, breakpoints unificados</li>
           <li><strong>Context API</strong> — Estado global de autenticación (AuthContext)</li>
         </ul>
       </section>
@@ -33,34 +33,39 @@ function About() {
         <h2>Estructura del Proyecto</h2>
         <pre className="about-structure">
 {`src/
-├── components/          # Componentes reutilizables
-│   ├── Navbar.jsx       # Barra de navegación responsive
-│   ├── PrivateRoute.jsx # Protección de rutas privadas
-│   ├── ProductCard.jsx  # Tarjeta individual de producto
-│   ├── ProductForm.jsx  # Formulario crear/editar producto
-│   └── ProductList.jsx  # Listado de productos
+├── components/           # Componentes reutilizables
+│   ├── Navbar.jsx        # Barra de navegación responsive
+│   ├── PrivateRoute.jsx  # Protección de rutas privadas
+│   ├── ProductCard.jsx   # Tarjeta individual de producto
+│   ├── ProductForm.jsx   # Formulario crear/editar producto
+│   ├── ProductList.jsx   # Listado de productos
+│   └── AuthForm.jsx      # Formulario unificado Login/Register
 ├── context/
-│   ├── AuthContext.jsx   # Provider de autenticación
+│   ├── AuthContext.jsx    # Provider de autenticación
 │   └── AuthContextDef.js # Definición del contexto
 ├── hooks/
-│   └── useAuth.js       # Hook personalizado de autenticación
+│   └── useAuth.js        # Hook personalizado de autenticación
 ├── pages/
-│   ├── Login.jsx        # Página de inicio de sesión
-│   ├── Register.jsx     # Página de registro
-│   ├── Dashboard.jsx    # Panel principal con CRUD
-│   └── About.jsx        # Página informativa (esta página)
+│   ├── Login.jsx         # Página de inicio de sesión
+│   ├── Register.jsx      # Página de registro
+│   ├── Dashboard.jsx     # Panel principal con CRUD
+│   └── About.jsx         # Página informativa
 ├── services/
-│   ├── firebase.js      # Configuración de Firebase
+│   ├── firebase.js       # Configuración de Firebase
 │   └── productService.js # Operaciones CRUD con Firestore
-├── styles/              # Archivos CSS modulares
+├── styles/               # Archivos CSS modulares
 │   ├── Auth.css
 │   ├── Navbar.css
 │   ├── Dashboard.css
-│   └── About.css
-├── App.jsx              # Componente raíz con Router
+│   ├── ProductForm.css
+│   ├── ProductCard.css
+│   ├── ProductList.css
+│   ├── shared.css
+│   └── breakpoints.css
+├── App.jsx               # Componente raíz con RouterProvider
 ├── App.css
-├── main.jsx             # Punto de entrada con AuthProvider
-└── index.css            # Estilos globales y reset`}
+├── main.jsx              # Punto de entrada con AuthProvider
+└── index.css             # Estilos globales y reset`}
         </pre>
       </section>
 
@@ -126,6 +131,12 @@ function About() {
             archivos (definición, provider, hook) para resolver el warning de
             Fast Refresh de Vite, que requiere que cada archivo exporte
             exclusivamente componentes o exclusivamente funciones.
+          </li>
+          <li>
+            <strong>Router moderno:</strong> Se implementó el router moderno de
+            React Router v7 con <code>createBrowserRouter</code>, permitiendo una
+            configuración más sencilla y un manejo óptimo de rutas anidadas y
+            carga de datos.
           </li>
         </ul>
       </section>

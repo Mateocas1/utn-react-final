@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
 import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute'
@@ -7,39 +6,57 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import About from './pages/About'
 import './App.css'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
 function App() {
   const { user } = useAuth()
 
-  return (
-    <BrowserRouter>
-      <div className="app">
-        <Navbar />
-        <main className="main-content">
-          <Routes>
-            <Route
-              path="/login"
-              element={user ? <Navigate to="/dashboard" replace /> : <Login />}
-            />
-            <Route
-              path="/register"
-              element={user ? <Navigate to="/dashboard" replace /> : <Register />}
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
-        </main>
-      </div>
-    </BrowserRouter>
-  )
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <div className="app">
+          <Navbar />
+          <main className="main-content">
+            {/* Nested routes */}
+            <RouterOutlet />
+          </main>
+        </div>
+      ),
+      children: [
+        {
+          path: '/login',
+          element: user ? <Navigate to="/dashboard" replace /> : <Login />,
+        },
+        {
+          path: '/register',
+          element: user ? <Navigate to="/dashboard" replace /> : <Register />,
+        },
+        {
+          path: '/dashboard',
+          element: (
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: '/about',
+          element: <About />,
+        },
+        {
+          path: '/',
+          element: <Navigate to="/dashboard" replace />,
+        },
+        {
+          path: '*',
+          element: <div style={{padding:'2rem',textAlign:'center'}}>Página no encontrada</div>,
+        },
+      ],
+    },
+  ])
+
+  return <RouterProvider router={router} />
 }
 
 export default App

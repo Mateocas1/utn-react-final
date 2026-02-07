@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { CATEGORIES } from '../constants/categories'
+import '../styles/ProductForm.css'
+import '../styles/shared.css'
 
 function ProductForm({ onSubmit, editingProduct, onCancelEdit }) {
   const [name, setName] = useState('')

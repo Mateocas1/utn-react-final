@@ -9,6 +9,7 @@ import {
   deleteProduct,
 } from '../services/productService'
 import '../styles/Dashboard.css'
+import '../styles/breakpoints.css'
 
 function Dashboard() {
   const [products, setProducts] = useState([])
@@ -18,9 +19,9 @@ function Dashboard() {
   const { user } = useAuth()
 
   useEffect(() => {
-    if (!user) return
+    if (!user?.uid) return
 
-    setLoadingProducts(true)
+    // setLoadingProducts(true) // Evitar setState directo en el efecto
 
     const unsubscribe = subscribeToProducts(
       user.uid,
@@ -35,7 +36,7 @@ function Dashboard() {
     )
 
     return () => unsubscribe()
-  }, [user])
+  }, [user?.uid])
 
   async function handleSubmit(productData) {
     if (editingProduct) {

@@ -12,17 +12,17 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  function register(email, password) {
+  const register = useCallback((email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
-  }
+  }, [])
 
-  function login(email, password) {
+  const login = useCallback((email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
-  }
+  }, [])
 
-  function logout() {
+  const logout = useCallback(() => {
     return signOut(auth)
-  }
+  }, [])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -33,17 +33,17 @@ export function AuthProvider({ children }) {
     return () => unsubscribe()
   }, [])
 
-  const value = {
+  const value = useMemo(() => ({
     user,
     loading,
     register,
     login,
     logout,
-  }
+  }), [user, loading, register, login, logout])
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {loading ? <div style={{padding:'2rem',textAlign:'center'}}>Cargando sesión...</div> : children}
     </AuthContext.Provider>
   )
 }
